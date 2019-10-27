@@ -17,23 +17,25 @@ import {BooksService} from './books/books.service';
 
 export class AppComponent {
 
-  title = 'AngularBooksPWA';
-
-  searchForm: FormGroup;
-
   constructor(private formBuilder: FormBuilder, private booksService: BooksService,
               private router: Router) {
 
   }
 
+  title = 'AngularBooksPWA';
+
+  searchForm: FormGroup;
+
+  offline: boolean;
+
   ngOnInit() {
 
     this.searchForm = this.formBuilder.group({
-
       search: ['', Validators.required],
-
     });
 
+    window.addEventListener('online',  this.onNetworkStatusChange.bind(this));
+    window.addEventListener('offline', this.onNetworkStatusChange.bind(this));
   }
 
   onSearch() {
@@ -44,6 +46,11 @@ export class AppComponent {
 
     this.router.navigate(['search'], {queryParams: {query: this.searchForm.get('search').value}});
 
+  }
+
+  onNetworkStatusChange() {
+    this.offline = !navigator.onLine;
+    console.log('offline ' + this.offline);
   }
 
 }

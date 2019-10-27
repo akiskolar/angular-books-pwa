@@ -3,6 +3,9 @@
       <button mat-button routerLink="/">{{title}}</button>
       <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
     </span>
+
+  <div *ngIf="offline">offline</div>
+
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
       <div class="input-group">
