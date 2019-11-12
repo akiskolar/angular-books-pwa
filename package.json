@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --source-map",
+    "deploy": "http-server-spa dist/AngularBooksPWA/ index.html 8080",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
